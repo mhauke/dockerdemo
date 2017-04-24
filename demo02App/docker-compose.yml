@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+
+  redis:
+    image: redis:3.2.6-alpine
+    volumes:
+      - "vol_redis:/data"
+    restart: always
+    command: redis-server --appendonly yes
+
+  webapp:
+    image: webapp_build:latest
+    depends_on:
+      - redis
+    links:
+      - redis
+    ports:
+      - "80:80"
+    restart: always
+    environment:
+      - redis_port=6379
+      - redis_host=redis
+
+volumes:
+  vol_redis:
+    driver: netapp
+    driver_opts:
+      size: "10g"
+      snapshotDir: "false"
