@@ -114,7 +114,7 @@ docker ps
 ```
 To bring up our web server we need to link it to the Redis DB. 
 ```
-docker run --name webapp -d -p 80:80 --link redis webapp:latest --redis_port=6379 --redis_host=redis
+docker run --name webapp -d -p 80:80 --link redis webapp_build:latest --redis_port=6379 --redis_host=redis
 ```
 
 Now that we posted some logos on our webpage. Let's make a backup. 
