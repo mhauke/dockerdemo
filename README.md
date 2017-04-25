@@ -132,8 +132,9 @@ docker rm redis
 # create a new volume from the snapshot we just created
 docker volume create --driver netapp --name vol_redis_clone --opt from=vol_redis --opt fromSnapshot=netappdvp_vol_redis_snap1
 
-# bring up the Redis DB with the new volume
-docker run --name redis -d -v vol_redis:/data redis:3.2.6-alpine redis-server --appendonly yes
+# bring up the Redis DB with the new volume and afterwards start webapp
+docker run --name redis -d -v vol_redis_clone:/data redis:3.2.6-alpine redis-server --appendonly yes
+docker run --name webapp -d -p 80:80 --link redis webapp_build:latest --redis_port=6379 --redis_host=redis
 ```
 
 Show and explain the ```docker-compose.yml```
