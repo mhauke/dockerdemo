@@ -49,6 +49,7 @@ Open this Webserver at Host-IP:5000
 Stop everything!!!  
 ```
 docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 ```
 
 
@@ -125,7 +126,11 @@ Now that we posted some logos on our webpage. Let's make a backup.
 ```
 docker stop redis
 ssh admin@10.65.59.210 "volume snapshot create -vserver svm_jamaica_nas -volume netappdvp_vol_redis -snapshot netappdvp_vol_redis_snap1"
+
+docker start redis
 ```
+Place some more Logos on the website.
+
 Show on in System Manager that the volume has now a snapshot. 
 
 Upps something went wrong and we need to use the snapshot.
