@@ -128,10 +128,11 @@ ssh admin@10.65.59.210 "volume snapshot create -vserver svm_jamaica_nas -volume 
 ```
 Show on in System Manager that the volume has now a snapshot. 
 
-Upps something went wrong an we need to use the snapshot.
+Upps something went wrong and we need to use the snapshot.
 ```
 # remove the container pointing with the old volume
 docker rm redis
+docker rm webapp_build
 
 # create a new volume from the snapshot we just created
 docker volume create --driver netapp --name vol_redis_clone --opt from=vol_redis --opt fromSnapshot=netappdvp_vol_redis_snap1
