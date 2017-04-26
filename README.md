@@ -58,6 +58,10 @@ Tip: Install before the demo. In case of problems.
 
 But show how easy it is to install the plugin by open the website and highlighting the command.
 
+```
+docker plugin install --grant-all-permissions --alias netapp netapp/ndvp-plugin:17.04
+```
+
 https://store.docker.com/plugins/netapp-docker-volume-plugin-ndvp?tab=description
 
 Then go to the host and show the config-file that is used when installing the plugin.
